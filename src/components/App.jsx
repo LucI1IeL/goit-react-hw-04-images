@@ -34,9 +34,10 @@ const App = () => {
         alert(`An error occurred while fetching data: ${error}`);
       }
     };
-
+    
     fetchImages();
-  }, [searchQuery, currentPage]);
+
+  }, [searchQuery, currentPage, images]);
 
   const handleSearchSubmit = query => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -72,7 +73,7 @@ const App = () => {
       <SearchBar onSubmit={handleSearchSubmit} />
       <ImageGallery images={images} />
       {isLoading && <Loader />}
-      {!isLoading && !isError && images.length > 0 && !isEnd && (
+      {!isLoading && !isError && (images.length > 0) && !isEnd && (
         <Button onClick={handleLoadMore} />
       )}
       {isError && <p>Something went wrong. Please try again later.</p>}
